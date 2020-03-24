@@ -10,6 +10,9 @@ public class VegetablesApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VegetablesApplication.class, args);
+
+
+
     }
 
 }
