@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.OrderDetail">
+    <id column="order_detail_id" jdbcType="INTEGER" property="orderDetailId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="final_price" jdbcType="DOUBLE" property="finalPrice" />
+    <result column="final_count" jdbcType="INTEGER" property="finalCount" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.OrderDetail">
+    insert into order_detail (order_detail_id, order_id, goods_id, 
+      goods_name, final_price, final_count
+      )
+    values (#{orderDetailId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsName,jdbcType=VARCHAR}, #{finalPrice,jdbcType=DOUBLE}, #{finalCount,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.OrderDetail">
+    update order_detail
+    set order_id = #{orderId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      final_price = #{finalPrice,jdbcType=DOUBLE},
+      final_count = #{finalCount,jdbcType=INTEGER}
+    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select order_detail_id, order_id, goods_id, goods_name, final_price, final_count
+    from order_detail
+    where order_detail_id = #{orderDetailId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select order_detail_id, order_id, goods_id, goods_name, final_price, final_count
+    from order_detail
+  </select>
+</mapper>

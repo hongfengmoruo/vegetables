@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.FunctionTableMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.FunctionTable">
+    <id column="source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="source_name" jdbcType="VARCHAR" property="sourceName" />
+    <result column="source_url" jdbcType="VARCHAR" property="sourceUrl" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from function_table
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.FunctionTable">
+    insert into function_table (source_id, source_name, source_url
+      )
+    values (#{sourceId,jdbcType=INTEGER}, #{sourceName,jdbcType=VARCHAR}, #{sourceUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.FunctionTable">
+    update function_table
+    set source_name = #{sourceName,jdbcType=VARCHAR},
+      source_url = #{sourceUrl,jdbcType=VARCHAR}
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select source_id, source_name, source_url
+    from function_table
+    where source_id = #{sourceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select source_id, source_name, source_url
+    from function_table
+  </select>
+</mapper>

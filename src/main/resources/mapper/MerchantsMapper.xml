@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.MerchantsMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.Merchants">
+    <id column="pos_id" jdbcType="INTEGER" property="posId" />
+    <result column="pos_name" jdbcType="VARCHAR" property="posName" />
+    <result column="pos_phone" jdbcType="CHAR" property="posPhone" />
+    <result column="pos_addr" jdbcType="VARCHAR" property="posAddr" />
+    <result column="pos_shop_name" jdbcType="VARCHAR" property="posShopName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from merchants
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.Merchants">
+    insert into merchants (pos_id, pos_name, pos_phone, 
+      pos_addr, pos_shop_name)
+    values (#{posId,jdbcType=INTEGER}, #{posName,jdbcType=VARCHAR}, #{posPhone,jdbcType=CHAR}, 
+      #{posAddr,jdbcType=VARCHAR}, #{posShopName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.Merchants">
+    update merchants
+    set pos_name = #{posName,jdbcType=VARCHAR},
+      pos_phone = #{posPhone,jdbcType=CHAR},
+      pos_addr = #{posAddr,jdbcType=VARCHAR},
+      pos_shop_name = #{posShopName,jdbcType=VARCHAR}
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select pos_id, pos_name, pos_phone, pos_addr, pos_shop_name
+    from merchants
+    where pos_id = #{posId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select pos_id, pos_name, pos_phone, pos_addr, pos_shop_name
+    from merchants
+  </select>
+</mapper>

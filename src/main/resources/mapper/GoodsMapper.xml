@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.Goods">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_prices" jdbcType="DOUBLE" property="goodsPrices" />
+    <result column="goods_discount" jdbcType="DOUBLE" property="goodsDiscount" />
+    <result column="goods_status" jdbcType="INTEGER" property="goodsStatus" />
+    <result column="goods_count" jdbcType="INTEGER" property="goodsCount" />
+    <result column="goods_is_new" jdbcType="INTEGER" property="goodsIsNew" />
+    <result column="goods_is_hot" jdbcType="INTEGER" property="goodsIsHot" />
+    <result column="goods_type" jdbcType="INTEGER" property="goodsType" />
+    <result column="goods_brief" jdbcType="VARCHAR" property="goodsBrief" />
+    <result column="goods_details" jdbcType="VARCHAR" property="goodsDetails" />
+    <result column="goods_photo" jdbcType="VARCHAR" property="goodsPhoto" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.Goods">
+    insert into goods (goods_id, goods_name, goods_prices, 
+      goods_discount, goods_status, goods_count, 
+      goods_is_new, goods_is_hot, goods_type, 
+      goods_brief, goods_details, goods_photo
+      )
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsPrices,jdbcType=DOUBLE}, 
+      #{goodsDiscount,jdbcType=DOUBLE}, #{goodsStatus,jdbcType=INTEGER}, #{goodsCount,jdbcType=INTEGER}, 
+      #{goodsIsNew,jdbcType=INTEGER}, #{goodsIsHot,jdbcType=INTEGER}, #{goodsType,jdbcType=INTEGER}, 
+      #{goodsBrief,jdbcType=VARCHAR}, #{goodsDetails,jdbcType=VARCHAR}, #{goodsPhoto,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.Goods">
+    update goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_prices = #{goodsPrices,jdbcType=DOUBLE},
+      goods_discount = #{goodsDiscount,jdbcType=DOUBLE},
+      goods_status = #{goodsStatus,jdbcType=INTEGER},
+      goods_count = #{goodsCount,jdbcType=INTEGER},
+      goods_is_new = #{goodsIsNew,jdbcType=INTEGER},
+      goods_is_hot = #{goodsIsHot,jdbcType=INTEGER},
+      goods_type = #{goodsType,jdbcType=INTEGER},
+      goods_brief = #{goodsBrief,jdbcType=VARCHAR},
+      goods_details = #{goodsDetails,jdbcType=VARCHAR},
+      goods_photo = #{goodsPhoto,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select goods_id, goods_name, goods_prices, goods_discount, goods_status, goods_count, 
+    goods_is_new, goods_is_hot, goods_type, goods_brief, goods_details, goods_photo
+    from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select goods_id, goods_name, goods_prices, goods_discount, goods_status, goods_count, 
+    goods_is_new, goods_is_hot, goods_type, goods_brief, goods_details, goods_photo
+    from goods
+  </select>
+</mapper>

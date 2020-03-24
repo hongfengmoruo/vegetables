@@ -1,0 +1,44 @@
+server:
+  port: 9081
+  tomcat:
+    uri-encoding: utf-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/bishe?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+      max-total: 10
+      max-wait-millis: 2000
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.system.vegetables.entity
+logging:
+  level:
+    com.system.vegetables.mapper: debug
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: ture
+  params: count=countSql
+upload:
+  folder: 'D:/upload/'
+
+

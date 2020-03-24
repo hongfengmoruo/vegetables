@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.AddrsMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.Addrs">
+    <id column="addr_id" jdbcType="INTEGER" property="addrId" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_phone" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
+    <result column="is_default_addr" jdbcType="INTEGER" property="isDefaultAddr" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from addrs
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.Addrs">
+    insert into addrs (addr_id, receive_name, receive_phone, 
+      receive_addr, is_default_addr)
+    values (#{addrId,jdbcType=INTEGER}, #{receiveName,jdbcType=VARCHAR}, #{receivePhone,jdbcType=VARCHAR}, 
+      #{receiveAddr,jdbcType=VARCHAR}, #{isDefaultAddr,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.Addrs">
+    update addrs
+    set receive_name = #{receiveName,jdbcType=VARCHAR},
+      receive_phone = #{receivePhone,jdbcType=VARCHAR},
+      receive_addr = #{receiveAddr,jdbcType=VARCHAR},
+      is_default_addr = #{isDefaultAddr,jdbcType=INTEGER}
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select addr_id, receive_name, receive_phone, receive_addr, is_default_addr
+    from addrs
+    where addr_id = #{addrId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select addr_id, receive_name, receive_phone, receive_addr, is_default_addr
+    from addrs
+  </select>
+</mapper>

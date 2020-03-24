@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.vegetables.mapper.RoleFunctionTableMapper">
+  <resultMap id="BaseResultMap" type="com.system.vegetables.entity.RoleFunctionTable">
+    <id column="role_function_id" jdbcType="INTEGER" property="roleFunctionId" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="source_id" jdbcType="INTEGER" property="sourceId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role_function_table
+    where role_function_id = #{roleFunctionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.system.vegetables.entity.RoleFunctionTable">
+    insert into role_function_table (role_function_id, role_id, source_id
+      )
+    values (#{roleFunctionId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.system.vegetables.entity.RoleFunctionTable">
+    update role_function_table
+    set role_id = #{roleId,jdbcType=INTEGER},
+      source_id = #{sourceId,jdbcType=INTEGER}
+    where role_function_id = #{roleFunctionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select role_function_id, role_id, source_id
+    from role_function_table
+    where role_function_id = #{roleFunctionId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select role_function_id, role_id, source_id
+    from role_function_table
+  </select>
+</mapper>
